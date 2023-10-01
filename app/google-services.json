@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "121878372141",
+    "project_id": "safestop-386c6",
+    "storage_bucket": "safestop-386c6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121878372141:android:2d8920ade2c0cc825bbda4",
+        "android_client_info": {
+          "package_name": "com.example.safestop"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXBr7D-BuchCneLkxz6PbiEp4ZZ9FyBZg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
