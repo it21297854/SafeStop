@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/dashboard2"
-    android:backgroundTint="@color/theme"
-    tools:context=".MainActivity"
-    tools:ignore="HardcodedText">
+    tools:context=".activity.MainActivity">
 
     <TextView
         android:id="@+id/lastTrip"
@@ -16,8 +14,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:text="Your last trip"
+        android:fontFamily="@font/gotham"
         android:textAllCaps="true"
-        android:textColor="@color/white"
+        android:textColor="@color/theme"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
@@ -66,6 +65,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="Cash Balance"
+                android:fontFamily="@font/gotham"
                 android:textAllCaps="true"
                 android:textColor="@color/theme"
                 android:textSize="16sp"
@@ -92,6 +92,7 @@
                 android:layout_marginBottom="8dp"
                 android:backgroundTint="@color/theme"
                 android:text="Top Up"
+
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
@@ -143,7 +144,7 @@
                     android:id="@+id/image_view1"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/bus"
+                    android:src="@drawable/bus2"
                     app:layout_constraintBottom_toTopOf="@+id/textView1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -156,6 +157,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Long Distance"
+                    android:fontFamily="@font/gotham"
                     android:textAllCaps="true"
                     android:textColor="@color/theme"
                     android:textSize="14sp"
@@ -171,7 +173,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/practiceCard"
+            android:id="@+id/analyticsCard"
             android:layout_width="170dp"
             android:layout_height="128dp"
             android:layout_margin="8dp"
@@ -203,6 +205,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Analytics"
+                    android:fontFamily="@font/gotham"
                     android:textAllCaps="true"
                     android:textColor="@color/theme"
                     android:textSize="14sp"
@@ -231,7 +234,7 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/learnCard"
+            android:id="@+id/search_card"
             android:layout_width="170dp"
             android:layout_height="128dp"
             android:layout_margin="8dp"
@@ -247,22 +250,23 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/image_view21"
+                    android:id="@+id/search_image"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:src="@drawable/search"
-                    app:layout_constraintBottom_toTopOf="@+id/textView21"
+                    app:layout_constraintBottom_toTopOf="@+id/search_text"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/search_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Search"
+                    android:fontFamily="@font/gotham"
                     android:textAllCaps="true"
                     android:textColor="@color/theme"
                     android:textSize="14sp"
@@ -271,14 +275,14 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/image_view21" />
+                    app:layout_constraintTop_toBottomOf="@+id/search_image" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/interestsCard"
+            android:id="@+id/bookTripCard"
             android:layout_width="170dp"
             android:layout_height="128dp"
             android:layout_margin="8dp"
@@ -297,20 +301,21 @@
                     android:id="@+id/image_view22"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/book"
-                    app:layout_constraintBottom_toTopOf="@+id/textView22"
+                    android:src="@drawable/booktrip"
+                    app:layout_constraintBottom_toTopOf="@+id/bookTrip"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/bookTrip"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Book a Trip"
                     android:textAllCaps="true"
+                    android:fontFamily="@font/gotham"
                     android:textColor="@color/theme"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -359,7 +364,7 @@
                     android:id="@+id/image_view23"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/bus"
+                    android:src="@drawable/bus2"
                     app:layout_constraintBottom_toTopOf="@+id/textView23"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -372,6 +377,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Rs 550"
+                    android:fontFamily="@font/gotham"
                     android:textAllCaps="true"
                     android:textColor="@color/theme"
                     android:textSize="14sp"
@@ -406,7 +412,7 @@
                     android:id="@+id/image_view"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
-                    android:src="@drawable/bus"
+                    android:src="@drawable/bus2"
                     app:layout_constraintBottom_toTopOf="@+id/textView4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
@@ -420,6 +426,7 @@
                     android:gravity="center"
                     android:text="Rs 80"
                     android:textAllCaps="true"
+                    android:fontFamily="@font/gotham"
                     android:textColor="@color/theme"
                     android:textSize="14sp"
                     android:textStyle="bold"

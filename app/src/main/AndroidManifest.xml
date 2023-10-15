@@ -13,21 +13,35 @@
         android:theme="@style/Theme.safestop"
         tools:targetApi="31">
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activity.GetBookDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".activity.AnalyticsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BookSeatActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SearchBusesActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.BookTripCardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SignUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.SignInActivity"
             android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:name=".activity.MainActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

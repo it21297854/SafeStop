@@ -1,4 +1,4 @@
-package com.example.safestop
+package com.example.safestop.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -20,7 +20,7 @@ class SignUpActivity : AppCompatActivity() {
         firebaseAuth = FirebaseAuth.getInstance()
             //if we click the textview navigation
         binding.textView.setOnClickListener{
-            val intent = Intent(this,SignInActivity::class.java)
+            val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
 
@@ -36,7 +36,7 @@ class SignUpActivity : AppCompatActivity() {
                     //Creating username password into firebase by passing the value that we are entring
                     firebaseAuth.createUserWithEmailAndPassword(email,pass).addOnCompleteListener{
                         if(it.isSuccessful){
-                            val intent = Intent(this,SignInActivity::class.java)
+                            val intent = Intent(this, SignInActivity::class.java)
                             startActivity(intent)
                         }
                         else{

@@ -1,11 +1,10 @@
-package com.example.safestop
+package com.example.safestop.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.example.safestop.databinding.ActivitySignInBinding
-import com.example.safestop.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {
@@ -20,7 +19,7 @@ class SignInActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.textView.setOnClickListener{
-            val intent = Intent(this,SignUpActivity::class.java)
+            val intent = Intent(this, SignUpActivity::class.java)
             startActivity(intent)
         }
         binding.button.setOnClickListener{
@@ -32,7 +31,7 @@ class SignInActivity : AppCompatActivity() {
                     //signing in with username password into firebase
                     firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener{
                         if(it.isSuccessful){
-                            val intent = Intent(this,MainActivity::class.java)
+                            val intent = Intent(this, MainActivity::class.java)
                             startActivity(intent)
                         }
                         else{

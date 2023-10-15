@@ -1,10 +1,11 @@
-package com.example.safestop
+package com.example.safestop.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import com.example.safestop.R
 import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
@@ -20,9 +21,9 @@ class MainActivity : AppCompatActivity() {
 
         // register all the card views with their appropriate IDs
         val contributeCard: CardView = findViewById(R.id.contributeCard)
-        val practiceCard: CardView = findViewById(R.id.practiceCard)
-        val learnCard: CardView = findViewById(R.id.learnCard)
-        val interestsCard: CardView = findViewById(R.id.interestsCard)
+        val analyticsCard: CardView = findViewById(R.id.analyticsCard)
+        val searchCard: CardView = findViewById(R.id.search_card)
+        val bookTripCard: CardView = findViewById(R.id.bookTripCard)
         val helpCard: CardView = findViewById(R.id.helpCard)
         val settingsCard: CardView = findViewById(R.id.settingsCard)
 
@@ -43,22 +44,25 @@ class MainActivity : AppCompatActivity() {
 
         // handle each of the cards with the OnClickListener
         contributeCard.setOnClickListener {
-            Toast.makeText(this, "Contribute Articles", Toast.LENGTH_SHORT).show()
         }
-        practiceCard.setOnClickListener {
-            Toast.makeText(this, "Practice Programming", Toast.LENGTH_SHORT).show()
+        analyticsCard.setOnClickListener {
+            val i = Intent(this, AnalyticsActivity::class.java)
+            startActivity(i)
         }
-        learnCard.setOnClickListener {
-            Toast.makeText(this, "Learn Programming", Toast.LENGTH_SHORT).show()
+        searchCard.setOnClickListener {
+            Toast.makeText(this, "Navigating to the Available Busses", Toast.LENGTH_SHORT).show()
+            val i = Intent(this, SearchBusesActivity::class.java)
+            startActivity(i)
         }
-        interestsCard.setOnClickListener {
-            Toast.makeText(this, "Filter your Interests", Toast.LENGTH_SHORT).show()
+        bookTripCard.setOnClickListener {
+            Toast.makeText(this, "Navigating to the Book a Trip page", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, BookTripCardActivity::class.java)
+            startActivity(intent)
         }
         helpCard.setOnClickListener {
-            Toast.makeText(this, "Anything Help you want?", Toast.LENGTH_SHORT).show()
         }
         settingsCard.setOnClickListener {
-            Toast.makeText(this, "Change the settings", Toast.LENGTH_SHORT).show()
+
         }
     }
 }
