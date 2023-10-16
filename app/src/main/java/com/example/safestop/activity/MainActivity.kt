@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         // handle each of the buttons with the OnClickListener
         todoB.setOnClickListener {
             Toast.makeText(this, "TODO LIST", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, TopUp::class.java)
+            startActivity(intent)
         }
 
         logoutButton.setOnClickListener {
