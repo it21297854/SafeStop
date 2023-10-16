@@ -1,5 +1,9 @@
 package com.example.safestop.database
 
+import android.content.Context
+import android.content.Intent
+import android.widget.Toast
+import com.example.safestop.activity.MainActivity
 import com.example.safestop.model.Payment
 import com.example.safestop.model.User
 import com.google.firebase.database.DataSnapshot
@@ -9,8 +13,11 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 
 class FirebaseHelper {
+    //using singleton pattern gettting database reference
     var databaseReference: DatabaseReference = FirebaseDatabase.getInstance().reference
 
+
+    //create a user when sig up the application
     fun createUser(user: User, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
 
         val taskRef = databaseReference.child("User").child(user.userID!!)
@@ -23,12 +30,10 @@ class FirebaseHelper {
             }
     }
 
+    //creating a payment data
     fun createPayment(payment: Payment, onSuccess: () -> Unit, onFailure: (Exception) -> Unit) {
 
-
-
         val taskRef = databaseReference.child("payment").child(payment.cardNo!!)
-//        task.id = taskRef.key // Assign the generated key as the task ID
         taskRef.setValue(payment)
             .addOnSuccessListener {
                 onSuccess()
@@ -38,6 +43,7 @@ class FirebaseHelper {
             }
     }
 
+    //update the balance after credited successfully
     fun updateWalletBalance(userID:String, balance: Double) {
 
         this.getSingleUserData(userID){user ->
@@ -50,12 +56,14 @@ class FirebaseHelper {
         }
     }
 
+    //update payment balance after credited successfully
     fun updatePaymentBalance(balance:Double, payment: Payment) {
         var newBalance = Payment(payment.cardNo,payment.name,payment.expDate,payment.cvv,payment.balance!! - balance)
         databaseReference.child("payment").child(payment.cardNo!!).setValue(newBalance)
 
     }
 
+    //getting single payment data passing the cartNumber
     fun getSinglePaymentData(id:String, callback: (Payment?) -> Unit){
         var ref = databaseReference.child("payment").child(id)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -84,6 +92,7 @@ class FirebaseHelper {
         })
     }
 
+    //gettting single userdata passing the userID
     fun getSingleUserData(id:String, callback: (User?) -> Unit){
         var ref = databaseReference.child("User").child(id)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
@@ -103,23 +112,53 @@ class FirebaseHelper {
         })
     }
 
-    fun checkPayment(payment: Payment, userID:String){
+//    fun checkPayment(payment: Payment, userID:String, callback: (Boolean) -> Unit){
+//
+//        this.getSinglePaymentData(payment.cardNo!!) {pay ->
+//            if(pay!= null){
+//                println("data:${pay}")
+//                if(pay.expDate == payment.expDate && pay.cvv == payment.cvv){
+//
+//                    //checking the balance is enough or not
+//                    if(pay.balance!! >= payment.balance!!){
+//                        println("balance is enough")
+//                        this.updatePaymentBalance(payment.balance!!, pay)
+//                        this.updateWalletBalance(userID, payment.balance!!)
+//                        callback(true)
+//                    }
+//
+//                }
+//            }
+//        }
+//        return callback(false)
+//
+//    }
 
-        this.getSinglePaymentData(payment.cardNo!!) {pay ->
-            if(pay!= null){
-                println("data:${pay}")
-                if(pay.expDate == payment.expDate && pay.cvv == payment.cvv){
+    //validate the cart details and update the payment balance and user wallet balance
+fun checkPayment(payment: Payment, userID:String, context:Context){
 
-                    //checking the balance is enough or not
-                    if(pay.balance!! >= payment.balance!!){
-                        println("balance is enough")
-                        this.updatePaymentBalance(payment.balance!!, pay)
-                        this.updateWalletBalance(userID, payment.balance!!)
-                    }
+    this.getSinglePaymentData(payment.cardNo!!) {pay ->
+        if(pay!= null){
+            println("data:${pay}")
+            if(pay.expDate == payment.expDate && pay.cvv == payment.cvv){
 
+                //checking the balance is enough or not
+                if(pay.balance!! >= payment.balance!!){
+                    this.updatePaymentBalance(payment.balance!!, pay)
+                    this.updateWalletBalance(userID, payment.balance!!)
+
+                    val intent = Intent(context, MainActivity::class.java)
+                    intent.putExtra("userID", userID)
+                    context.startActivity(intent)
+                }else{
+                    Toast.makeText(context, "Balance is insufficient", Toast.LENGTH_SHORT).show()
                 }
+            }else{
+                Toast.makeText(context, "cart invalid", Toast.LENGTH_SHORT).show()
             }
+        }else{
+            Toast.makeText(context, "cart invalid", Toast.LENGTH_SHORT).show()
         }
-
     }
+}
 }

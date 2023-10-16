@@ -27,11 +27,15 @@ class SignInActivity : AppCompatActivity() {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
 
+            //checking email and password null or not getting from ui elements
             if (email.isNotEmpty() && pass.isNotEmpty() ){
                     //signing in with username password into firebase
                     firebaseAuth.signInWithEmailAndPassword(email,pass).addOnCompleteListener{
                         if(it.isSuccessful){
+                            //getting userid from the email and initialize to the userId
                             val userId = email.substringBefore("@")
+
+                            //redirect to the main page after successfull login
                             val intent = Intent(this, MainActivity::class.java)
                             intent.putExtra("userID", userId)
                             startActivity(intent)
@@ -41,7 +45,7 @@ class SignInActivity : AppCompatActivity() {
                         }
                     }
                 }else{
-                Toast.makeText(this, "Empty Fields are not allowed", Toast.LENGTH_SHORT).show()
+                 Toast.makeText(this, "Empty Fields are not allowed", Toast.LENGTH_SHORT).show()
                 }
             }
         }

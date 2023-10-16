@@ -3,6 +3,7 @@ package com.example.safestop.model
 import android.os.Parcel
 import android.os.Parcelable
 
+//setting trip model as the data class
 data class Trip(
     var tripId: String? =  null,
     var selectedTime: String? = null,

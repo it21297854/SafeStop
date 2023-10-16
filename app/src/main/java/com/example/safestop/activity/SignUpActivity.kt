@@ -35,9 +35,11 @@ class SignUpActivity : AppCompatActivity() {
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
 
+            //checking email and password and confirm passwords are null or not
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()){
+                //checking password and confirm password are equal
                 if(pass == confirmPass){
-
+                    //getting the userID from email
                     val userID = email.substringBefore("@")
 
 
@@ -67,10 +69,12 @@ class SignUpActivity : AppCompatActivity() {
                     }
 
                 }else{
+                    //showing toast if password were not correct
                     Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
                 }
             }
             else{
+                //showing toast if field are empty in ui
                 Toast.makeText(this, "Empty Fields are not allowed", Toast.LENGTH_SHORT).show()
             }
         }
