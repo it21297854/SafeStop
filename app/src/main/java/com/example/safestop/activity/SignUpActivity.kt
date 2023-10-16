@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.safestop.database.FirebaseHelper
 import com.example.safestop.databinding.ActivitySignUpBinding
+import com.example.safestop.model.Payment
 import com.example.safestop.model.User
 import com.google.firebase.auth.FirebaseAuth
 

@@ -25,29 +25,30 @@ class TopUp : AppCompatActivity() {
 
         btn_pay.setOnClickListener {
             var newPayment = Payment(
-                "first",
                 cardNo = txt_cartNo.text.toString(),
                 name = txt_name.text.toString(),
                 expDate = txt_exp.text.toString(),
                 cvv = txt_cvv.text.toString().toInt(),
                 balance = txt_amount.text.toString().toDouble()
             )
-            Log.e("1234", "${newPayment}")
+//            Log.e("1234", "${newPayment}")
 
-            firebaseHelper.createPayment(newPayment, {
-                // Task creation was successful
-                Toast.makeText(this, "Task created successfully", Toast.LENGTH_SHORT).show()
+//            firebaseHelper.createPayment(newPayment, {
+//                // Task creation was successful
+//                Toast.makeText(this, "Task created successfully", Toast.LENGTH_SHORT).show()
+//
+//                // Optionally, clear the input fields
+//                txt_amount.text.clear()
+//                txt_cartNo.text.clear()
+//                txt_name.text.clear()
+//                txt_cvv.text.clear()
+//                txt_exp.text.clear()
+//            }, { exception ->
+//                // Task creation failed, handle the error
+//                Toast.makeText(this, "Task creation failed: ${exception.message}", Toast.LENGTH_SHORT).show()
+//            })
 
-                // Optionally, clear the input fields
-                txt_amount.text.clear()
-                txt_cartNo.text.clear()
-                txt_name.text.clear()
-                txt_cvv.text.clear()
-                txt_exp.text.clear()
-            }, { exception ->
-                // Task creation failed, handle the error
-                Toast.makeText(this, "Task creation failed: ${exception.message}", Toast.LENGTH_SHORT).show()
-            })
+            firebaseHelper.checkPayment(newPayment, "user")
         }
     }
 }

@@ -51,7 +51,7 @@
                 android:textStyle="bold|italic" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/txt_WBalance"
                 android:layout_width="wrap_content"
                 android:layout_height="50dp"
                 android:layout_weight="1"
