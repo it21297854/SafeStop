@@ -37,8 +37,11 @@ class SignUpActivity : AppCompatActivity() {
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()){
                 if(pass == confirmPass){
 
+                    val userID = email.substringBefore("@")
+
+
                     //create the user with balance
-                    firebaseHelper.createUser(User(email,0.0), {
+                    firebaseHelper.createUser(User(userID,0.0), {
                         // Task creation was successful
 //                        Toast.makeText(this, "Task created successfully", Toast.LENGTH_SHORT).show()
                         println("succes:${User(email,0.0)}")
