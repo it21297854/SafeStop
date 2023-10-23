@@ -14,6 +14,7 @@ class SearchBusesActivity : AppCompatActivity() {
 
         val seatArrangement: Button = findViewById(R.id.seatArrangement)
 
+        //handling the seat arrangement button
         seatArrangement.setOnClickListener{
             Toast.makeText(this, "Navigating to the Seats Arrangements", Toast.LENGTH_SHORT).show()
             val i = Intent(this, BookSeatActivity::class.java)

@@ -13,6 +13,9 @@
         android:theme="@style/Theme.safestop"
         tools:targetApi="31">
         <activity
+            android:name=".activity.TopUp"
+            android:exported="false" />
+        <activity
             android:name=".activity.GetBookDetailsActivity"
             android:exported="false" />
         <activity
