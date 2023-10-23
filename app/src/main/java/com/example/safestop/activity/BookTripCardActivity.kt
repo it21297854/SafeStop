@@ -20,6 +20,7 @@ import java.util.Calendar
 import java.util.Locale
 
 class BookTripCardActivity : AppCompatActivity() {
+
     private lateinit var viewSeats: Button
     private lateinit var personEditText: EditText
     private lateinit var timeSpinner: Spinner
@@ -32,6 +33,7 @@ class BookTripCardActivity : AppCompatActivity() {
         "4:00 PM" to 375.0,
         "6:00 PM" to 700.0
     )
+
     private val database = FirebaseDatabase.getInstance()
     private val databaseReference = database.getReference("BookTrip")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -121,6 +123,8 @@ class BookTripCardActivity : AppCompatActivity() {
                 }
 
         }
+
+
     }
 
     private fun updateTotalCost() {
@@ -130,4 +134,11 @@ class BookTripCardActivity : AppCompatActivity() {
         val cost = price * numPassengers
         totalCost.text = "Total Cost: $cost LKR"
     }
+
+    fun calculateCost(selectedTime: String, numPassengers: Int): Double {
+        val price = timeToPriceMap[selectedTime] ?: 0.0
+        return price * numPassengers
+    }
 }
+
+
