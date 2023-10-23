@@ -30,7 +30,7 @@ class AnalyticsActivity : AppCompatActivity() {
         val adapter = TripAdapter()
         recyclerView.adapter = adapter
 
-        val query = databaseReference.child("trips") // Replace with your specific node
+        val query = databaseReference.child("trips")
         query.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val tripsList: MutableList<Trip> = mutableListOf()
@@ -75,8 +75,4 @@ class AnalyticsActivity : AppCompatActivity() {
             }
         })
     }
-}
-
-private fun Intent.putExtra(s: String, trip: Trip) {
-
 }
