@@ -1,5 +1,6 @@
 package com.example.safestop.activity
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -35,9 +36,14 @@ class SignInActivity : AppCompatActivity() {
                             //getting userid from the email and initialize to the userId
                             val userId = email.substringBefore("@")
 
+                            //store the user id
+                            val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+                            val editor = sharedPreferences.edit()
+                            editor.putString("userId", userId)
+                            editor.apply()
+
                             //redirect to the main page after successfull login
                             val intent = Intent(this, MainActivity::class.java)
-                            intent.putExtra("userID", userId)
                             startActivity(intent)
                         }
                         else{
