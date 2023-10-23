@@ -1,4 +1,5 @@
 package com.example.safestop.activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -32,9 +33,13 @@ class MainActivity : AppCompatActivity() {
 
         //setting balance to the wallet
         var walletBalance:TextView = findViewById(R.id.txt_Wallet)
-        var userID = intent.getStringExtra("userID")
-        firebaase.getSingleUserData(userID!!) {user ->
-            walletBalance.text = user!!.balance.toString()
+
+        //getting userid from already stored
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val userID = sharedPreferences.getString("userId", "")
+        firebaase.getSingleUserData(userID!!) {
+            val value = "%.2f".format(it).toDouble()
+            walletBalance.text = "Rs.${value}"
         }
 
 
@@ -42,9 +47,7 @@ class MainActivity : AppCompatActivity() {
         todoB.setOnClickListener {
             //redirect to the topup page and passing the userID data
             val intent = Intent(this, TopUp::class.java)
-            intent.putExtra("userID", userID)
             startActivity(intent)
-            finish()
         }
 
         //handle the logout button

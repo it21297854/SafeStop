@@ -1,6 +1,7 @@
 package com.example.safestop.activity
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -30,11 +31,12 @@ class TopUp : AppCompatActivity() {
         var txt_wallet:TextView = findViewById(R.id.txt_WBalance)
 
         //getting the userID after login the page
-        var userID = intent.getStringExtra("userID")
+        val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+        val userID = sharedPreferences.getString("userId", "")
 
         //getting the user wallet balance and initialize to ui text
-        firebaseHelper.getSingleUserData(userID!!){user ->
-            txt_wallet.text = user!!.balance.toString()
+        firebaseHelper.getSingleUserData(userID!!){
+            txt_wallet.text = "Rs.${it}"
         }
 
         //listening to pay button after clicked
@@ -76,7 +78,7 @@ class TopUp : AppCompatActivity() {
 //            }
 
             //to validate and update the balance from firebase database
-            firebaseHelper.checkPayment(newPayment, "user", this)
+            firebaseHelper.checkPayment(newPayment, userID, this)
         }
     }
 }

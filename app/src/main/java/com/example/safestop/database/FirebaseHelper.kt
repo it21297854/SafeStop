@@ -44,13 +44,16 @@ class FirebaseHelper {
     }
 
     //update the balance after credited successfully
-    fun updateWalletBalance(userID:String, balance: Double) {
+    fun updateWalletBalance(userID:String, balance: Double, onSuccess: () -> Unit) {
 
-        this.getSingleUserData(userID){user ->
+        this.getSingleUserData(userID){
 
-            if(user != null){
-                var newBalance = User(user.userID,balance + user.balance!!)
-                databaseReference.child("User").child(user.userID!!).setValue(newBalance)
+            if(it != null){
+                var newBalance = User(userID,balance + it!!)
+                databaseReference.child("User").child(userID!!).setValue(newBalance)
+                    .addOnSuccessListener {
+                        onSuccess()
+                    }
             }
 
         }
@@ -93,13 +96,13 @@ class FirebaseHelper {
     }
 
     //gettting single userdata passing the userID
-    fun getSingleUserData(id:String, callback: (User?) -> Unit){
+    fun getSingleUserData(id:String, callback: (Double?) -> Unit){
         var ref = databaseReference.child("User").child(id)
         ref.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 if (dataSnapshot.exists()) {
                     val paycheck = dataSnapshot.getValue(User::class.java)
-                    callback(paycheck)
+                    callback(paycheck!!.balance)
                 } else {
                     callback(null) // Teacher not found
                 }
@@ -139,17 +142,18 @@ fun checkPayment(payment: Payment, userID:String, context:Context){
 
     this.getSinglePaymentData(payment.cardNo!!) {pay ->
         if(pay!= null){
-            println("data:${pay}")
+            println("data:${pay} adn ${userID}")
             if(pay.expDate == payment.expDate && pay.cvv == payment.cvv){
 
                 //checking the balance is enough or not
                 if(pay.balance!! >= payment.balance!!){
                     this.updatePaymentBalance(payment.balance!!, pay)
-                    this.updateWalletBalance(userID, payment.balance!!)
+                    this.updateWalletBalance(userID, payment.balance!!){
+                        val intent = Intent(context, MainActivity::class.java)
+                        context.startActivity(intent)
+                    }
 
-                    val intent = Intent(context, MainActivity::class.java)
-                    intent.putExtra("userID", userID)
-                    context.startActivity(intent)
+
                 }else{
                     Toast.makeText(context, "Balance is insufficient", Toast.LENGTH_SHORT).show()
                 }
