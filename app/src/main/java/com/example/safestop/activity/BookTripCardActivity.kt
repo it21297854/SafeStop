@@ -1,5 +1,6 @@
 package com.example.safestop.activity
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,6 +15,7 @@ import android.widget.Spinner
 import android.widget.TextView
 import android.widget.Toast
 import com.example.safestop.R
+import com.example.safestop.database.FirebaseHelper
 import com.google.firebase.database.FirebaseDatabase
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -33,12 +35,15 @@ class BookTripCardActivity : AppCompatActivity() {
         "4:00 PM" to 375.0,
         "6:00 PM" to 700.0
     )
+    private val firebaase = FirebaseHelper()
 
     private val database = FirebaseDatabase.getInstance()
     private val databaseReference = database.getReference("BookTrip")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_book_trip_card)
+
+        val bookTrip:Button = findViewById(R.id.bookTripButton)
 
         val dateEditText = findViewById<EditText>(R.id.date_edit_text)
         // Calculate the date for the next day
@@ -124,7 +129,41 @@ class BookTripCardActivity : AppCompatActivity() {
 
         }
 
+        bookTrip.setOnClickListener {
+            val total = totalCost.text.toString()
+            val final = extractDoubleFromString(total)
+            val negativeValue = convertToNegative(final!!)
 
+            println(negativeValue)
+            //getting userid from already stored
+            val sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE)
+            val userID = sharedPreferences.getString("userId", "")
+            firebaase.getSingleUserData(userID!!) {
+                val value = "%.2f".format(it).toDouble()
+                if(value >= final){
+                    firebaase.updateWalletBalance(userID, negativeValue){
+                        Toast.makeText(this,"Booked", Toast.LENGTH_SHORT).show()
+                        var i = Intent(this, MainActivity::class.java)
+                        startActivity(i)
+                    }
+                }
+            }
+        }
+
+
+
+
+    }
+
+    fun convertToNegative(doubleValue: Double): Double {
+        return -doubleValue
+    }
+
+    fun extractDoubleFromString(input: String): Double? {
+        val regex = """(\d+\.\d+)""".toRegex()
+        val matchResult = regex.find(input)
+
+        return matchResult?.value?.toDoubleOrNull()
     }
 
     private fun updateTotalCost() {
