@@ -134,11 +134,6 @@ class BookTripCardActivity : AppCompatActivity() {
         val cost = price * numPassengers
         totalCost.text = "Total Cost: $cost LKR"
     }
-
-    fun calculateCost(selectedTime: String, numPassengers: Int): Double {
-        val price = timeToPriceMap[selectedTime] ?: 0.0
-        return price * numPassengers
-    }
 }
 
 

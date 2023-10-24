@@ -20,7 +20,6 @@ class ValidatorTest{
         val desc = ""
         val result = Validator.validateInput(amount, desc)
         assertThat(result).isEqualTo(false)
-
     }
 
 
