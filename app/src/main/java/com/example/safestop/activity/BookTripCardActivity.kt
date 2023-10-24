@@ -146,6 +146,8 @@ class BookTripCardActivity : AppCompatActivity() {
                         var i = Intent(this, MainActivity::class.java)
                         startActivity(i)
                     }
+                }else{
+                    Toast.makeText(this,"Balance not enough please topup", Toast.LENGTH_SHORT).show()
                 }
             }
         }
