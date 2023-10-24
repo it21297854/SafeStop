@@ -7,47 +7,54 @@
     android:background="@drawable/fullbackground"
     tools:context=".activity.AnalyticsActivity">
 
-    <RelativeLayout
-        android:id="@+id/relativeLay"
-        android:layout_width="match_parent"
+<!--    <androidx.appcompat.widget.Toolbar-->
+<!--        android:id="@+id/toolbarBookedTrips"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="?attr/actionBarSize"-->
+<!--        android:background="?attr/theme"-->
+<!--        android:gravity="start"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:navigationIcon="@drawable/baseline_arrow_back_24"-->
+<!--        app:subtitle="Not paid"-->
+<!--        app:subtitleTextColor="@color/white"-->
+<!--        app:title="Booked Trips"-->
+<!--        app:titleTextColor="@color/white" />-->
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/card_view">
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginStart="86dp"
-            android:layout_marginEnd="93dp"
-            android:layout_weight="45"
-            android:fontFamily="@font/gotham"
-            android:text="Booked Trips Analytics"
-            android:textAlignment="center"
-            android:textColor="#FFFFFF"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </RelativeLayout>
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_weight="45"
+        android:fontFamily="@font/gotham"
+        android:text="Booked Trips Analytics"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/card_view"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card_view"
         android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:layout_margin="20dp"
+        android:layout_height="match_parent"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="16dp"
+        android:foregroundGravity="center"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLay">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="500dp"
+            android:layout_height="match_parent"
             android:clipToPadding="false"
             android:padding="8dp"
             android:scrollbars="vertical"

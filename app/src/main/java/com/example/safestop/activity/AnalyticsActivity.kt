@@ -3,6 +3,8 @@ package com.example.safestop.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
+import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.safestop.R
@@ -26,6 +28,10 @@ class AnalyticsActivity : AppCompatActivity() {
 
         recyclerView = findViewById(R.id.recycler_view)
         recyclerView.layoutManager = LinearLayoutManager(this)
+
+//        val toolbar = findViewById<Toolbar>(R.id.toolbarBookedTrips)
+//        setSupportActionBar(toolbar)
+//        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val adapter = TripAdapter()
         recyclerView.adapter = adapter
@@ -75,4 +81,14 @@ class AnalyticsActivity : AppCompatActivity() {
             }
         })
     }
+//    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+//        return when (item.itemId) {
+//            android.R.id.home -> {
+//                finish() // Close the current activity and navigate back
+//                true
+//            }
+//
+//            else -> super.onOptionsItemSelected(item)
+//        }
+//    }
 }
